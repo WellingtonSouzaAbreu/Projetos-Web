@@ -1,0 +1,409 @@
+*, *::before, ::after {
+    padding: 0;
+    margin: 0
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+#clipboard{ /* Área de colagem */
+    border: none;
+    position: absolute;
+}
+
+.tela-inicial{
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    background-color: rgb(110, 110, 110);  
+    overflow: hidden;  
+    display: flex; /* Display flex */
+    justify-content: space-around;
+    flex-direction: column;
+    transition-duration: 1s;
+    box-shadow: 2px 2px 5000px black  ;
+}
+
+.titulo-tela-inicial{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2.5em;
+    text-shadow: 1px 1px 3px black;
+    height: 20%;
+}
+
+.curiosidades-tela-inicial{
+    font-size: 1.2em;
+    text-shadow: 1px 1px 1px black;
+    color: white;
+    height: 60%;
+}
+
+.curiosidades-tela-inicial h3{
+    margin: 10px 30px;
+}
+
+.curiosidades-tela-inicial p{
+    margin: 20px 60px;
+}
+
+.curiosidades-tela-inicial i{
+    color: black;
+}
+
+.rodape-tela-inicial{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 1px 1px 1px black;
+    height: 20%;
+}
+
+.rodape-tela-inicial input{
+    padding: 20px 60px;
+    background-color: black;
+    color: white;
+    font-size: 1em;
+    border-radius: 12px;
+}
+
+.pagina {
+    width: 1280px;
+    height: 700px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.lateral {
+    width: 25%;
+    height: 654px;
+    background-image: url('../img/background-lateral.jpg');
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    box-shadow: 2px 2px 2px white;
+}
+
+.cabecalho {
+    width: 100%;
+    height: 10%;
+}
+
+.ctimer {
+    text-align: end;
+}
+
+#timer {
+    font-size: 25pt;
+    margin: 10px 15px 0px 0px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.menu {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-titulo {
+    height: 20%;
+}
+
+.menu-titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow: 2px 1px 2px black;
+}
+
+.opcoes-menu {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.opcoes-menu .opcao-menu {
+    width: 100%;
+}
+
+.opcao-menu {
+    display: flex;
+    justify-content: center;
+}
+
+.opcoes-menu input {
+    padding: 10px;
+    width: 62%;
+    border-radius: 25px;
+    border: 3px solid white;
+    background-color: transparent;
+    font-size: 12pt;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 1px 2px black;
+    cursor: pointer;
+}
+
+.opcoes-menu input:hover{
+    background-color: black;
+    color:white;
+}
+
+.chat {
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-inner {
+    width: 85%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1px solid white;
+    box-shadow: 1px 1px 1px black;
+    background-color: #b9b9ad;
+}
+
+.display-msg {
+    height: 85%;
+    margin: 15px;
+    line-height: 25px;
+    overflow: auto;
+}
+
+.display-msg p {
+    background-color: white;
+    margin: 4px;
+    color: black;
+    padding: 2px 2px 2px 10px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 1px black;
+    line-height: 16px;
+}
+
+.entrada-msg {
+    height: 15%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.entrada-texto {
+    height: 100%;
+    width: 86%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: white;
+}
+
+.entrada-texto input {
+    height: 70%;
+    width: 100%;
+    border: none;
+    margin: 0px 8px;
+    outline: 5px;
+}
+
+.send-msg {
+    background-color: white;
+    height: 100%;
+    width: 14%;
+    cursor: pointer;
+    border: none;
+}
+
+.send-msg i {
+    color: black;
+    font-size: 37px;
+    text-justify: center;
+}
+
+.area-jogo {
+    width: 75%;
+    height: 654px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cemiterio-white {
+    width: 15%;
+    background-color: #b9b9ad;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid white;
+}
+
+.nome-jogador {
+    width: 100%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.nome-jogador-w{
+    background-color: white;
+    box-shadow: 1px 1px 4px black;
+
+
+}
+.nome-jogador-w h3{
+    color: black;
+}
+
+.colunas {
+    display: flex;
+}
+
+.coluna-cemiterio {
+    width: 48%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cemiterio-posicao {
+    height: 55px;
+    width: 55px;
+    margin: 6.75px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 2.2em;
+}
+
+.ctabuleiro {
+    background-color:yellow;
+    width: 650px;
+    height: 650px;
+    margin: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    box-shadow: 0.5px 0.5px 12px black;
+}
+
+.fileira-horizontal {
+    height: 81.25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.posicao {
+    width: 81.25px;
+    height: 81.25px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.posicao:hover {
+    opacity: 0.5;
+}
+
+.pos-white {
+    background-color:white;
+}
+
+.pos-black {
+    background-color: black;
+    color: white; /* SOmente usado para localização na fase de programação */
+    
+}
+
+.cemiterio-black {
+    width: 15%;
+    background-color: #b9b9ad;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid white;
+}
+
+.nome-jogador-b{ 
+    background-color: black;
+    box-shadow: 1px 1px 4px white;
+}
+.nome-jogador-b h3{
+    color: white;
+}
+
+.tela-vitoria{
+    position: absolute;
+    height: 0px;
+    width: 700px;
+    margin-top: 50px;
+    background-color: rgb(255, 255, 255);
+    background-size: 99%;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    opacity: 0;
+    transition-duration: 1s;
+    box-shadow: 22px 22px 22222px black;
+}
+
+.tela-vitoria__header{
+    text-align: right;
+}
+
+.tela-vitoria__header button{
+    padding: 3px;
+    font-size: 25px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.tela-vitoria__header i{
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+
+.tela-vitoria__body{
+    text-align: center;
+    margin-top: 150px;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 22px black;
+}
+
+/* Trocar peça */
+.trocar-peca{
+    position: absolute;
+    background-image: linear-gradient( white, black, white);
+    height: 0px;
+    width: 400px;
+    transition-duration: 1s;
+    overflow: hidden;
+}
+
+.trocar-peca__header{
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
+.trocar-peca__body{
+    margin: 20px; 
+    display:flex;
+    justify-content: space-around;
+}
+
+.trocar-peca__body img{
+    padding: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}

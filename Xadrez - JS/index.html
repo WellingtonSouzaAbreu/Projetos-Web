@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Jogo de Xadrez</title>
+</head>
+<!-- onload="apresentarTelaVitoria('white')" -->
+<body>
+    <div class="tela-inicial">
+        <!-- Primeira tela -->
+        <div class="titulo-tela-inicial">
+            <h1>Xadrez</h1>
+        </div>
+        <div class="curiosidades-tela-inicial">
+            <h3>Curiosidades</h3>
+            <p> <i class="fa fa-chevron-right" aria-hidden="true"></i> O xadrez surgiu por volta do século V na Pérsia
+            </p>
+            <p> <i class="fa fa-chevron-right" aria-hidden="true"></i> Benjamin Franklin era um grande entusiasta do
+                xadrez</p>
+            <p> <i class="fa fa-chevron-right" aria-hidden="true"></i> Depois de apenas 4 lances, o número de
+                combinações possíveis do jogo chega a 315 bilhões!</p>
+            <p> <i class="fa fa-chevron-right" aria-hidden="true"></i> “Xaque-mate” é uma expressão do jogo de xadrez
+                que significa “o rei está morto”. Ela vem da frase persa “Shah Mat”</p>
+            <p> <i class="fa fa-chevron-right" aria-hidden="true"></i> Na Romênia, não só o Xadrez é uma disciplina
+                obrigatória, como 33% da nota de Matemática dos alunos depende do desempenho no jogo.</p>
+            <p></p>
+            <p></p>
+        </div>
+        <div class="rodape-tela-inicial">
+            <input type="button" value="Start" onclick="start()">
+        </div>
+    </div>
+    <!-- <div class="players">
+        <label>Player 1:<input type="text" class="player"></label>
+        <label>Player 2<input type="text" class="player"></label>
+    </div>   -->
+
+    <div class="tela-ajuda"></div>
+    <div class="tela-sobre"></div>
+    <div class="pagina">
+        <div class="lateral">
+            <input type="number" hidden value="1" id="contador-jogada">
+            <input type="text" hidden value="" id="peca-selecionada"> <!-- Peça selecionada para jogar -->
+            <input type="text" hidden value="" id="destino-selecionado"> <!-- Posicao para realizar jogada -->
+            <div class="cabecalho">
+                <div class="ctimer">
+                    <h3 id="timer">00:00:00</h3>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="menu-titulo">
+                    <h1>Menu</h1>
+                </div>
+                <div class="opcoes-menu">
+                    <div class="opcao-menu"><input type="button" value="Reiniciar" onclick="reiniciarJogo()"></div>
+                    <div class="opcao-menu"><input type="button" value="Convidar" onclick="convidarPlayer2()"></div>
+                    <div class="opcao-menu"><input type="button" value="Ajuda"></div>
+                    <div class="opcao-menu"><input type="button" value="Sobre"></div>
+                </div>
+            </div>
+            <div class="chat">
+                <div class="chat-inner">
+                    <div class="display-msg">
+                        <p>Use o chat para dialogar com seu adversário</p>
+                    </div>
+                    <div class="entrada-msg">
+                        <div class="entrada-texto">
+                            <input type="text" value="">
+                        </div>
+                        <div class="send-msg">
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="area-jogo">
+            <div class="cemiterio-white">
+                <div class="nome-jogador nome-jogador-w">
+                    <h3 id="jogador-white">White</h3>
+                </div>
+                <div class="colunas">
+                    <div class="coluna-cemiterio">
+                        <div class="cemiterio-posicao" id='cw1'></div>
+                        <div class="cemiterio-posicao" id='cw2'></div>
+                        <div class="cemiterio-posicao" id='cw3'></div>
+                        <div class="cemiterio-posicao" id='cw4'></div>
+                        <div class="cemiterio-posicao" id='cw5'></div>
+                        <div class="cemiterio-posicao" id='cw6'></div>
+                        <div class="cemiterio-posicao" id='cw7'></div>
+                        <div class="cemiterio-posicao" id='cw8'></div>
+                    </div>
+                    <div class="coluna-cemiterio">
+                        <div class="cemiterio-posicao" id='cw9'></div>
+                        <div class="cemiterio-posicao" id='cw10'></div>
+                        <div class="cemiterio-posicao" id='cw11'></div>
+                        <div class="cemiterio-posicao" id='cw12'></div>
+                        <div class="cemiterio-posicao" id='cw13'></div>
+                        <div class="cemiterio-posicao" id='cw14'></div>
+                        <div class="cemiterio-posicao" id='cw15'></div>
+                        <div class="cemiterio-posicao" id='cw16'></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ctabuleiro" id="tabuleiro">
+                <!-- Contagem de linhas feita de baixo para cima -->
+                <div class="fileira-horizontal">
+                    <!-- Linha 8 -->
+                    <div class="posicao pos-white" id="a8" onclick="selecionarPeca(this)">a8</div>
+                    <div class="posicao pos-black" id="b8" onclick="selecionarPeca(this)">b8</div>
+                    <div class="posicao pos-white" id="c8" onclick="selecionarPeca(this)">c8</div>
+                    <div class="posicao pos-black" id="d8" onclick="selecionarPeca(this)">d8</div>
+                    <div class="posicao pos-white" id="e8" onclick="selecionarPeca(this)">e8</div>
+                    <div class="posicao pos-black" id="f8" onclick="selecionarPeca(this)">f8</div>
+                    <div class="posicao pos-white" id="g8" onclick="selecionarPeca(this)">g8</div>
+                    <div class="posicao pos-black" id="h8" onclick="selecionarPeca(this)">h8</div>
+                </div>
+                <div class="fileira-horizontal">
+                    <!-- Linha 7 -->
+                    <div class="posicao pos-black" id="a7" onclick="selecionarPeca(this)">a7</div>
+                    <div class="posicao pos-white" id="b7" onclick="selecionarPeca(this)">b7</div>
+                    <div class="posicao pos-black" id="c7" onclick="selecionarPeca(this)">c7</div>
+                    <div class="posicao pos-white" id="d7" onclick="selecionarPeca(this)">d7</div>
+                    <div class="posicao pos-black" id="e7" onclick="selecionarPeca(this)">e7</div>
+                    <div class="posicao pos-white" id="f7" onclick="selecionarPeca(this)">f7</div>
+                    <div class="posicao pos-black" id="g7" onclick="selecionarPeca(this)">g7</div>
+                    <div class="posicao pos-white" id="h7" onclick="selecionarPeca(this)">h7</div>
+                </div>
+                <div class="fileira-horizontal">
+                    <!-- Linha 6 -->
+                    <div class="posicao pos-white" id="a6" onclick="selecionarPeca(this)">a6</div>
+                    <div class="posicao pos-black" id="b6" onclick="selecionarPeca(this)">b6</div>
+                    <div class="posicao pos-white" id="c6" onclick="selecionarPeca(this)">c6</div>
+                    <div class="posicao pos-black" id="d6" onclick="selecionarPeca(this)">d6</div>
+                    <div class="posicao pos-white" id="e6" onclick="selecionarPeca(this)">e6</div>
+                    <div class="posicao pos-black" id="f6" onclick="selecionarPeca(this)">f6</div>
+                    <div class="posicao pos-white" id="g6" onclick="selecionarPeca(this)">g6</div>
+                    <div class="posicao pos-black" id="h6" onclick="selecionarPeca(this)">h6</div>
+                </div>
+                <div class="fileira-horizontal">
+                    <!-- Linha 5 -->
+                    <div class="posicao pos-black" id="a5" onclick="selecionarPeca(this)">a5</div>
+                    <div class="posicao pos-white" id="b5" onclick="selecionarPeca(this)">b5</div>
+                    <div class="posicao pos-black" id="c5" onclick="selecionarPeca(this)">c5</div>
+                    <div class="posicao pos-white" id="d5" onclick="selecionarPeca(this)">d5</div>
+                    <div class="posicao pos-black" id="e5" onclick="selecionarPeca(this)">e5</div>
+                    <div class="posicao pos-white" id="f5" onclick="selecionarPeca(this)">f5</div>
+                    <div class="posicao pos-black" id="g5" onclick="selecionarPeca(this)">g5</div>
+                    <div class="posicao pos-white" id="h5" onclick="selecionarPeca(this)">h5</div>
+                </div>
+                <div class="fileira-horizontal">
+                    <!-- Linha 4 -->
+                    <div class="posicao pos-white" id="a4" onclick="selecionarPeca(this)">a4</div>
+                    <div class="posicao pos-black" id="b4" onclick="selecionarPeca(this)">b4</div>
+                    <div class="posicao pos-white" id="c4" onclick="selecionarPeca(this)">c4</div>
+                    <div class="posicao pos-black" id="d4" onclick="selecionarPeca(this)">d4</div>
+                    <div class="posicao pos-white" id="e4" onclick="selecionarPeca(this)">e4</div>
+                    <div class="posicao pos-black" id="f4" onclick="selecionarPeca(this)">f4</div>
+                    <div class="posicao pos-white" id="g4" onclick="selecionarPeca(this)">g4</div>
+                    <div class="posicao pos-black" id="h4" onclick="selecionarPeca(this)">h4</div>
+                </div>
+
+                <div class="fileira-horizontal">
+                    <!-- Linha 3 -->
+                    <div class="posicao pos-black" id="a3" onclick="selecionarPeca(this)">a3</div>
+                    <div class="posicao pos-white" id="b3" onclick="selecionarPeca(this)">b3</div>
+                    <div class="posicao pos-black" id="c3" onclick="selecionarPeca(this)">c3</div>
+                    <div class="posicao pos-white" id="d3" onclick="selecionarPeca(this)">d3</div>
+                    <div class="posicao pos-black" id="e3" onclick="selecionarPeca(this)">e3</div>
+                    <div class="posicao pos-white" id="f3" onclick="selecionarPeca(this)">f3</div>
+                    <div class="posicao pos-black" id="g3" onclick="selecionarPeca(this)">g3</div>
+                    <div class="posicao pos-white" id="h3" onclick="selecionarPeca(this)">h3</div>
+                </div>
+                <div class="fileira-horizontal">
+                    <!-- Linha 2 -->
+                    <div class="posicao pos-white" id="a2" onclick="selecionarPeca(this)">a2</div>
+                    <div class="posicao pos-black" id="b2" onclick="selecionarPeca(this)">b2</div>
+                    <div class="posicao pos-white" id="c2" onclick="selecionarPeca(this)">c2</div>
+                    <div class="posicao pos-black" id="d2" onclick="selecionarPeca(this)">d2</div>
+                    <div class="posicao pos-white" id="e2" onclick="selecionarPeca(this)">e2</div>
+                    <div class="posicao pos-black" id="f2" onclick="selecionarPeca(this)">f2</div>
+                    <div class="posicao pos-white" id="g2" onclick="selecionarPeca(this)">g2</div>
+                    <div class="posicao pos-black" id="h2" onclick="selecionarPeca(this)">h2</div>
+                </div>
+                <div class="fileira-horizontal">
+                    <!-- Linha 1 -->
+                    <div class="posicao pos-black" id="a1" onclick="selecionarPeca(this)">a1</div>
+                    <div class="posicao pos-white" id="b1" onclick="selecionarPeca(this)">b1</div>
+                    <div class="posicao pos-black" id="c1" onclick="selecionarPeca(this)">c1</div>
+                    <div class="posicao pos-white" id="d1" onclick="selecionarPeca(this)">d1</div>
+                    <div class="posicao pos-black" id="e1" onclick="selecionarPeca(this)">e1</div>
+                    <div class="posicao pos-white" id="f1" onclick="selecionarPeca(this)">f1</div>
+                    <div class="posicao pos-black" id="g1" onclick="selecionarPeca(this)">g1</div>
+                    <div class="posicao pos-white" id="h1" onclick="selecionarPeca(this)">h1</div>
+                </div>
+            </div>
+            <div class="cemiterio-black">
+                <div class="nome-jogador nome-jogador-b">
+                    <h3 id="jogador-black">Black</h3>
+                </div>
+                <div class="colunas">
+                    <div class="coluna-cemiterio">
+                        <div class="cemiterio-posicao" id='cb1'></div>
+                        <div class="cemiterio-posicao" id='cb2'></div>
+                        <div class="cemiterio-posicao" id='cb3'></div>
+                        <div class="cemiterio-posicao" id='cb4'></div>
+                        <div class="cemiterio-posicao" id='cb5'></div>
+                        <div class="cemiterio-posicao" id='cb6'></div>
+                        <div class="cemiterio-posicao" id='cb7'></div>
+                        <div class="cemiterio-posicao" id='cb8'></div>
+                    </div>
+                    <div class="coluna-cemiterio">
+                        <div class="cemiterio-posicao" id='cb9'></div>
+                        <div class="cemiterio-posicao" id='cb10'></div>
+                        <div class="cemiterio-posicao" id='cb11'></div>
+                        <div class="cemiterio-posicao" id='cb12'></div>
+                        <div class="cemiterio-posicao" id='cb13'></div>
+                        <div class="cemiterio-posicao" id='cb14'></div>
+                        <div class="cemiterio-posicao" id='cb15'></div>
+                        <div class="cemiterio-posicao" id='cb16'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./assets/script/script.js"></script>
+    
+    <div class="trocar-peca">
+        <div class="trocar-peca__header">
+            <h3>O seu peão alcançou o outro lado do tabuleiro, escolha uma peça para promoção:</h3>
+        </div>
+        <div class="trocar-peca__body">
+            <img class="pecas-troca">
+            <img class="pecas-troca">
+            <img class="pecas-troca">
+            <img  class="pecas-troca">
+        </div>
+    </div>
+    <div class="tela-vitoria">  <!-- Tela que aparece quando alguem vence -->
+        <div class="tela-vitoria__header">
+            <button id="bt-close"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+        <div class="tela-vitoria__body">
+            <h1 class="log-vencedor">Parabéns Keila!</h1>
+        </div>
+    </div>
+</body>
+
+</html>
