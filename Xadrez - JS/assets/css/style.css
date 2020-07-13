@@ -157,6 +157,142 @@ body {
     color:white;
 }
 
+.tela-ajuda{
+    width: 800px;
+    height: 0px;
+    position: absolute;
+    /* background-color: rgb(110, 110, 110);   */
+    background-color: white;
+    overflow: hidden;  
+    display: flex; /* Display flex */
+    justify-content: space-around;
+    flex-direction: column;
+    transition-duration: 1s;
+    box-shadow: 2px 2px 5000px black  ;
+}
+
+.tela-ajuda__header{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0px;
+}
+
+.tela-ajuda__body{
+    height: 96%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.tela-ajuda__aside{
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 1px black;
+}
+
+.tela-ajuda__aside ul{
+    font-size: 1.8em;
+    list-style: none;
+    overflow: hidden;
+    height: 34px;
+    margin-top: 10px;
+    cursor: pointer; 
+    transition-duration: 0.5s;
+}
+
+.tela-ajuda__aside li{
+    margin-left: 20px;
+    font-size: 0.8em;
+    padding: 5px;
+    text-align: center;
+    width: 100px;
+    box-sizing: border-box;
+}
+
+.tela-ajuda__aside li:hover{
+    background-color: rgb(184, 184, 184);
+    border-left: 5px solid black;
+}
+
+.tela-ajuda__body-inner{
+    height: 100%;
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.tela-ajuda__body-inner h3{
+    font-size: 30px;
+    height: 5%;
+    text-align: center;
+    padding: 10px;
+}
+
+.tela-ajuda__body-conteudo{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 95%;
+}
+
+.tela-ajuda-info{
+    height: 35%;
+    font-size: 1.1em;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgb(192, 192, 192);
+    border-radius: 50px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(94, 94, 94);
+    border-radius: 50px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #000; 
+  }
+
+.tela-ajuda-info p{
+    margin: 10px 20px;
+}
+
+.tela-ajuda-image{
+    overflow: hidden;
+    border-top: 1px solid white;
+    height: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgb(192, 192, 192);
+}
+    
+
+
+
+
+
+
+
+
+
+
+
+
 .chat {
     height: 50%;
     display: flex;
@@ -177,12 +313,13 @@ body {
 
 .display-msg {
     height: 85%;
-    margin: 15px;
+    margin: 5px;
     line-height: 25px;
     overflow: auto;
 }
 
 .display-msg p {
+    font-size: 14px;
     background-color: white;
     margin: 4px;
     color: black;
@@ -315,11 +452,11 @@ body {
 }
 
 .pos-white {
-    background-color:white;
+    background-color: wheat;
 }
 
 .pos-black {
-    background-color: black;
+    background-color: #875d26;
     color: white; /* SOmente usado para localização na fase de programação */
     
 }
@@ -359,7 +496,7 @@ body {
     text-align: right;
 }
 
-.tela-vitoria__header button{
+.bt-close{
     padding: 3px;
     font-size: 25px;
     border: none;

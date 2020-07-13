@@ -1,15 +1,18 @@
+bloquearEventos() // Bloqueia interações com o tabuleiro
+
 function start() {
     let telaInicial = document.getElementsByClassName('tela-inicial')[0]
     telaInicial.style.height = 0
 
     preencherTabuleiro()
     limparCemiterio()
-    iniciarTimer()
+    // setarPlayers()
+    desbloquearEventos()
+    configurarTimer('i')
 
-    setarPlayers()
 }
 
-function setarPlayers(){ // Update posteriormente
+function setarPlayers() { // Update posteriormente
     let player1 = document.getElementById('jogador-white')
     let player2 = document.getElementById('jogador-black')
 
@@ -23,12 +26,11 @@ function reiniciarJogo() {
     limparCemiterio()
     limparInputAux()
     desbloquearEventos()
-    document.getElementById('timer').innerText = '00:00:00' //Zera o timer
-
+    configurarTimer('r')
 }
 
 function limparInputAux() {
-    if(document.getElementById('peca-selecionada').value != "")
+    if (document.getElementById('peca-selecionada').value != "")
         document.getElementById(document.getElementById('peca-selecionada').value).style.opacity = 1 // Limpa a seleção da peça
 
     document.getElementById('contador-jogada').value = 1 // Zera contador
@@ -46,6 +48,87 @@ function convidarPlayer2() {
     document.execCommand('copy')
     // document.removeChild(aux) //Deveria excluir o componente
     aux.style.visibility = 'hidden'
+}
+
+function setarInfoImage(opcao) {
+    let titulo = document.querySelector('.tela-ajuda__body-inner h3')
+    let infoArea = document.querySelector('.tela-ajuda-info p')
+    let imageArea = document.querySelector('.tela-ajuda-image img')
+
+    switch (opcao) {
+        case 'Peão': {
+            titulo.innerText = opcao
+            infoArea.innerText = `De maneira geral, os peões se movem somente para frente, uma casa por vez, apenas o primeiro movimento permite pular duas casas. O peão não pode pular outras peças. O peão é a única peça que não pode mover-se para trás. Os peões capturam a peça adversária movendo-se diagonalmente uma casa, ele não pode capturar movendo-se para frente. O peão conta com um movimento especial chamado ‘promoção’, que permite o peão ser promovido para outra peça quando ele atinge o final do tabuleiro.`
+            imageArea.src = './assets/img/movimentos-peao.jpeg'
+            break
+        }
+        case 'Torre': {
+            titulo.innerText = opcao
+            infoArea.innerText = `A torre se move em linha reta horizontalmente e verticalmente pelo número de casas não ocupadas, até atingir o final do tabuleiro ou ser bloqueado por outra peça. Ele não pode pular outras peças. A torre captura no mesmo caminho em que se move, ocupando a casa onde se encontra a peça adversária. A torre pode parar em qualquer casa do tabuleiro, sendo por isso uma das peças mais poderosas.`
+            imageArea.src = './assets/img/movimentos-torre.jpeg'
+            break
+        }
+        case 'Cavalo': {
+            titulo.innerText = opcao
+            infoArea.innerText = `O cavalo é a peça mais especial no xadrez, possuindo uma flexibilidade que o torna poderoso. O cavalo move-se por duas casas horizontalmente ou verticalmente e então uma casa a mais em uma ângulo reto. O movimento do cavalo forma um “L”. O cavalo sempre termina seu movimento em uma casa de cor oposta à inicial. O cavalo pode pular sobre peças de qualquer cor enquanto vai para sua casa de destino, mas ele não captura nenhuma das peças que pula. O cavalo captura quando termina seu movimento na casa de uma peça adversária. O cavalo não pode terminar seu movimento em uma casa ocupada por uma peça da mesma cor. Uma vez que o movimento do cavalo não é em linha reta, ele pode atacar uma rainha, bispo ou torre sem ser atacado reciprocamente por esta peça.`
+            imageArea.src = './assets/img/movimentos-cavalo.jpeg'
+            break
+        }
+        case 'Bispo': {
+            titulo.innerText = opcao
+            infoArea.innerText = `O bispo se move em uma linha reta diagonalmente no tabuleiro. Ele pode mover-se por tantas casas quantas quiser, até encontrar o final do tabuleiro ou outra peça. O bispo não pode pular outras peças. O bispo captura no mesmo caminho em que ele se move, parando na casa da peça adversária. Devido à maneira como os bispos se movem, ele sempre permanece em casas da cor em que ele iniciou. Cada jogador começa com dois bispos, um nas casas pretas e outro nas brancas.`
+            imageArea.src = './assets/img/movimentos-bispo.jpeg'
+            break
+        }
+        case 'Rainha': {
+            titulo.innerText = opcao
+            infoArea.innerText = `A rainha é considerada a peça mais poderosa do tabuleiro. Ela pode mover-se qualquer número de casas em linha reta - verticalmente, horizontalmente ou diagonalmente. A rainha se move como a torre e o bispo combinados. A menos que esteja realizando uma captura, o movimento deve terminar em uma casa desocupada e ela não pode pular outras peças. A rainha captura no mesmo caminho em que se move, ocupando a casa da peça adversária.`
+            imageArea.src = './assets/img/movimentos-rainha.jpeg'
+            break
+        }
+        case 'Rei': {
+            titulo.innerText = opcao
+            infoArea.innerText = `O rei é a peça mais importante do xadrez. Se o rei for encurralado de modo que sua captura seja inevitável, o jogo termina e o este jogador perde. O rei tem pouca mobilidade, assim ele é considerado também uma das peças mais fracas no jogo. O rei pode se mover para qualquer casa vizinha. Ele não pode se mover para uma casa ocupada por uma peça da mesma cor. O rei captura outra peça da mesma maneira que se move, ocupando a casa da peça adversária. O rei não pode se mover para uma casa que o coloque sob ataque de uma peça adversária (chamado em “cheque”). Como resultado desta limitação, dois reis nunca poderão estar ao lado um do outro - uma vez que mover-se para o lado do outro rei o colocaria em cheque.`
+            imageArea.src = './assets/img/movimentos-rei.jpeg'
+            break
+        }
+    }
+}
+
+function configurarMenuItems() {
+    let menuItem = document.querySelectorAll('.tela-ajuda__aside li')
+
+    menuItem.forEach(item => {
+        item.onclick = function (event) {
+            let opcao = event.target.innerText
+            setarInfoImage(opcao)
+        }
+    })
+}
+
+function apresentarTelaAjuda() {
+    let telaAjuda = document.querySelector('.tela-ajuda')
+    telaAjuda.style.display = 'flex'
+    telaAjuda.style.height = '600px'
+    bloquearEventos()
+
+    let menuFlex = document.querySelectorAll('.tela-ajuda__aside ul')
+    menuFlex.forEach(menu => {
+        menu.onmouseover = function (event) {
+            menu.style.height = '255px'
+        }
+
+        menu.onmouseout = function (event) {
+            menu.style.height = '34px'
+        }
+
+        configurarMenuItems()
+    })
+
+    document.querySelectorAll('.bt-close')[1].onclick = function (event) {
+        telaAjuda.style.height = '0px'
+        desbloquearEventos()
+    }
 }
 
 function setPrimeiraFileira(pos, corPeca) {
@@ -115,39 +198,46 @@ function formatarTimer(time) {
     return '0' + time.toString()
 }
 
-function iniciarTimer() {
-    setInterval(() => {
-        let timer = document.getElementById('timer')
-        let tempo = (timer.innerText).split(':')
+function configurarTimer(comando) {
 
-        let horas = tempo[0]// Posições 2 e 5 representam os dois pontos
-        let minutos = tempo[1] || '00'
-        let segundos = tempo[2] || '00'
+    switch (comando) {
+        case 'i': setInterval(() => {
+            let timer = document.getElementById('timer')
+            let tempo = (timer.innerText).split(':')
 
-        if (segundos <= 58) {
-            segundos = parseInt(segundos) + 1
-            if (segundos < 10) {
-                segundos = formatarTimer(segundos)
+            let horas = tempo[0]// Posições 2 e 5 representam os dois pontos
+            let minutos = tempo[1] || '00'
+            let segundos = tempo[2] || '00'
+
+            if (segundos <= 58) {
+                segundos = parseInt(segundos) + 1
+                if (segundos < 10) {
+                    segundos = formatarTimer(segundos)
+                }
             }
-        }
 
-        if (segundos == 59) {
-            minutos = parseInt(minutos) + 1
-            segundos = formatarTimer(0)
-            if (minutos < 10) {
-                minutos = formatarTimer(minutos)
+            if (segundos == 59) {
+                minutos = parseInt(minutos) + 1
+                segundos = formatarTimer(0)
+                if (minutos < 10) {
+                    minutos = formatarTimer(minutos)
+                }
             }
-        }
 
-        if (minutos == 60) {   //Minutos é gerado pelo laço condicional anterior
-            horas = parseInt(horas) + 1
-            minutos = formatarTimer(0)
-            if (horas < 10) {
-                horas = formatarTimer(horas)
+            if (minutos == 60) {   //Minutos é gerado pelo laço condicional anterior
+                horas = parseInt(horas) + 1
+                minutos = formatarTimer(0)
+                if (horas < 10) {
+                    horas = formatarTimer(horas)
+                }
             }
-        }
-        timer.innerText = `${horas}:${minutos}:${segundos}`
-    }, 1000)
+            console.log(`${horas}:${minutos}:${segundos}`)
+            timer.innerText = `${horas}:${minutos}:${segundos}`
+        }, 1000)
+            break
+        case 'r': document.getElementById('timer').innerText = '00:00:00' //Zera o timer
+            break
+    }
 }
 
 function selecionarDestino(posicao) {
@@ -363,16 +453,25 @@ Está com dúvidas? Acesse ajuda ao lado`)
 }
 
 
-function bloquearEventos(){
+function bloquearEventos() {
     document.querySelectorAll('.posicao').forEach(posicao => {
         posicao.style.pointerEvents = 'none'
     })
+
+    let botoes = Array.from(document.querySelectorAll('.opcao-menu input'))
+    botoes.forEach(botao => {
+        botao.style.pointerEvents = 'none'
+    })
 }
 
-function desbloquearEventos(){
+function desbloquearEventos() {
     document.querySelectorAll('.posicao').forEach(posicao => {
-        posicao.style.pointerEvents = 'visible'
-        posicao.style.cursor = 'pointer'
+        posicao.style.pointerEvents = 'auto'
+    })
+
+    let botoes = Array.from(document.querySelectorAll('.opcao-menu input'))
+    botoes.forEach(botao => {
+        botao.style.pointerEvents = 'auto'
     })
 }
 
@@ -386,7 +485,7 @@ function apresentarTelaVitoria(corPeca) {
 
     logVitoria.innerText = `Parabéns Keila!` // Jogador referente
 
-    document.getElementById('bt-close').onclick = (event) => {
+    document.querySelector('.bt-close').onclick = (event) => {
         telaVitoria.style.height = '0px'
         telaVitoria.style.opacity = '0'
     }
@@ -769,3 +868,6 @@ Está com dúvidas? Acesse ajuda ao lado`)
 
 
 
+
+// Linah 57
+// Restam cavalo, peao e rei a serem configurados o info

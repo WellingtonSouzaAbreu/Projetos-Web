@@ -10,6 +10,7 @@
     <title>Jogo de Xadrez</title>
 </head>
 <!-- onload="apresentarTelaVitoria('white')" -->
+
 <body>
     <div class="tela-inicial">
         <!-- Primeira tela -->
@@ -35,13 +36,6 @@
             <input type="button" value="Start" onclick="start()">
         </div>
     </div>
-    <!-- <div class="players">
-        <label>Player 1:<input type="text" class="player"></label>
-        <label>Player 2<input type="text" class="player"></label>
-    </div>   -->
-
-    <div class="tela-ajuda"></div>
-    <div class="tela-sobre"></div>
     <div class="pagina">
         <div class="lateral">
             <input type="number" hidden value="1" id="contador-jogada">
@@ -59,7 +53,7 @@
                 <div class="opcoes-menu">
                     <div class="opcao-menu"><input type="button" value="Reiniciar" onclick="reiniciarJogo()"></div>
                     <div class="opcao-menu"><input type="button" value="Convidar" onclick="convidarPlayer2()"></div>
-                    <div class="opcao-menu"><input type="button" value="Ajuda"></div>
+                    <div class="opcao-menu"><input type="button" value="Ajuda" onclick="apresentarTelaAjuda()"></div>
                     <div class="opcao-menu"><input type="button" value="Sobre"></div>
                 </div>
             </div>
@@ -232,7 +226,7 @@
         </div>
     </div>
     <script type="text/javascript" src="./assets/script/script.js"></script>
-    
+
     <div class="trocar-peca">
         <div class="trocar-peca__header">
             <h3>O seu peão alcançou o outro lado do tabuleiro, escolha uma peça para promoção:</h3>
@@ -241,15 +235,51 @@
             <img class="pecas-troca">
             <img class="pecas-troca">
             <img class="pecas-troca">
-            <img  class="pecas-troca">
+            <img class="pecas-troca">
         </div>
     </div>
-    <div class="tela-vitoria">  <!-- Tela que aparece quando alguem vence -->
+    <div class="tela-vitoria">
+        <!-- Tela que aparece quando alguem vence -->
         <div class="tela-vitoria__header">
-            <button id="bt-close"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <button class="bt-close"><i class="fa fa-times" aria-hidden="true"></i></button>
         </div>
         <div class="tela-vitoria__body">
             <h1 class="log-vencedor">Parabéns Keila!</h1>
+        </div>
+    </div>
+    <div class="tela-ajuda">
+        <div class="tela-ajuda__header">
+            <button class="bt-close"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+        <div class="tela-ajuda__body">
+            <div class="tela-ajuda__aside">
+                <ul>
+                    <u>Peças</u>
+                    <li>Peão</li>
+                    <li>Torre</li>
+                    <li>Cavalo</li>
+                    <li>Bispo</li>
+                    <li>Rainha</li>
+                    <li>Rei</li>
+                </ul>
+                <ul>
+                    <u>Regras</u> 
+                    <li>Vitoria</li>
+                    <li>Promoção</li>
+                </ul>
+            </div>
+            <div class="tela-ajuda__body-inner">
+                <h3>Rainha</h3>
+                <div class="tela-ajuda__body-conteudo">
+                    <div class="tela-ajuda-info">
+                        <p>A rainha é considerada a peça mais poderosa do tabuleiro. Ela pode mover-se qualquer número de casas em linha reta - verticalmente, horizontalmente ou diagonalmente. A rainha se move como a torre e o bispo combinados. A menos que esteja realizando uma captura, o movimento deve terminar em uma casa desocupada e ela não pode pular outras peças. A rainha captura no mesmo caminho em que se move, ocupando a casa da peça adversária.</p>
+                    </div>
+                    <div class="tela-ajuda-image">
+                        <img src="./assets/img/movimentos-rainha.jpeg" alt="" class="">
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </body>
