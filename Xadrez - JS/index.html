@@ -54,7 +54,7 @@
                     <div class="opcao-menu"><input type="button" value="Reiniciar" onclick="reiniciarJogo()"></div>
                     <div class="opcao-menu"><input type="button" value="Convidar" onclick="convidarPlayer2()"></div>
                     <div class="opcao-menu"><input type="button" value="Ajuda" onclick="apresentarTelaAjuda()"></div>
-                    <div class="opcao-menu"><input type="button" value="Sobre"></div>
+                    <div class="opcao-menu"><input type="button" value="Sobre" onclick="sobreXadrez()"></div>
                 </div>
             </div>
             <div class="chat">
@@ -184,7 +184,7 @@
                     <div class="posicao pos-white" id="g2" onclick="selecionarPeca(this)">g2</div>
                     <div class="posicao pos-black" id="h2" onclick="selecionarPeca(this)">h2</div>
                 </div>
-                <div class="fileira-horizontal">
+                <div class="fileira-horizontal">    
                     <!-- Linha 1 -->
                     <div class="posicao pos-black" id="a1" onclick="selecionarPeca(this)">a1</div>
                     <div class="posicao pos-white" id="b1" onclick="selecionarPeca(this)">b1</div>
@@ -227,6 +227,9 @@
     </div>
     <script type="text/javascript" src="./assets/script/script.js"></script>
 
+    <div class="tela-alerta">
+        <span class="mensagem-erro"></span>
+    </div>
     <div class="trocar-peca">
         <div class="trocar-peca__header">
             <h3>O seu peão alcançou o outro lado do tabuleiro, escolha uma peça para promoção:</h3>
@@ -264,18 +267,18 @@
                 </ul>
                 <ul>
                     <u>Regras</u> 
-                    <li>Vitoria</li>
+                    <li>Vitória</li>
                     <li>Promoção</li>
                 </ul>
             </div>
             <div class="tela-ajuda__body-inner">
-                <h3>Rainha</h3>
+                <h3></h3>
                 <div class="tela-ajuda__body-conteudo">
                     <div class="tela-ajuda-info">
-                        <p>A rainha é considerada a peça mais poderosa do tabuleiro. Ela pode mover-se qualquer número de casas em linha reta - verticalmente, horizontalmente ou diagonalmente. A rainha se move como a torre e o bispo combinados. A menos que esteja realizando uma captura, o movimento deve terminar em uma casa desocupada e ela não pode pular outras peças. A rainha captura no mesmo caminho em que se move, ocupando a casa da peça adversária.</p>
+                        <p></p>
                     </div>
                     <div class="tela-ajuda-image">
-                        <img src="./assets/img/movimentos-rainha.jpeg" alt="" class="">
+                        <img>
                     </div>
 
                 </div>

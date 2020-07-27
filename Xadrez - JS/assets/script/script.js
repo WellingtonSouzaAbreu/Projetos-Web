@@ -92,6 +92,21 @@ function setarInfoImage(opcao) {
             imageArea.src = './assets/img/movimentos-rei.jpeg'
             break
         }
+        case 'Vitória': {
+            titulo.innerText = opcao
+            infoArea.innerText = `O Objetivo do jogo é dar xeque-mate no rei. Um xeque é quando uma peça “inimiga” ataca o rei. São formas de um rei escapar de um xeque: 
+
+                    - Capturar a peça que está dando o xeque no rei.
+                    
+                    - Fugir com o rei para uma casa que não estaja sendo atacada por uma peça inimiga e colocar uma peça entre o rei e a peça adversária.
+            Caso o rei seja atacado e não possa ir para outras casas, pois estas estão sendo atacadas por outras peças adversárias o rei está em xeque-mate e o jogo termina.`
+            break
+        }
+        case 'Promoção': {
+            titulo.innerText = opcao
+            infoArea.innerText = `Ocorre quando o peão ocupa uma casa da primeira linha do adversário. Essa peça deverá ser sbstituída por uma dama, uma torre, um bispo ou um cavalo. A peça escolhida irá substutuir o peão.`
+            break
+        }
     }
 }
 
@@ -129,6 +144,10 @@ function apresentarTelaAjuda() {
         telaAjuda.style.height = '0px'
         desbloquearEventos()
     }
+}
+
+function sobreXadrez(){
+    window.open('https://pt.wikipedia.org/wiki/Xadrez')
 }
 
 function setPrimeiraFileira(pos, corPeca) {
@@ -263,7 +282,7 @@ function selecionarPeca(posicao) {
 
     if (posicao.style.backgroundImage == 'unset') {       // Verifica se há peça na posicao
         if (pecaSelecionada.value == '') {
-            window.alert('Selecione uma peça para jogar')
+            apresentarAlerta('Selecione uma peça para jogar!')
         } else {
             selecionarDestino(posicao.id) // Movimento Passivo
         }
@@ -276,7 +295,7 @@ function selecionarPeca(posicao) {
             pecaSelecionada.value = posicao.id
         } else {
             if (pecaSelecionada.value == '') {
-                window.alert('selecione suas peças!')
+                apresentarAlerta(`Selecione suas peças!`)
             } else {
                 selecionarDestino(posicao.id) // Movimento Ofensivo
             }
@@ -446,8 +465,8 @@ function efetuarJogada(origem, destino, posicao, deslocamento) {
             incrementarContador() // Jogada bem sucedida, incremento no contador
         }
         else {
-            window.alert(`Posição Inválida!
-Está com dúvidas? Acesse ajuda ao lado`)
+            apresentarAlerta(`Posição Inválida!
+            Está com dúvidas? Acesse ajuda ao lado`)
         }
     }
 }
@@ -475,6 +494,20 @@ function desbloquearEventos() {
     })
 }
 
+function apresentarAlerta(msg) {
+    let alerta = document.querySelector('.tela-alerta')
+    let msgErro = document.querySelector('.mensagem-erro')
+
+    alerta.style.display = 'flex'
+    alerta.style.opacity = '1'
+    msgErro.innerText = msg
+
+    setTimeout(() => {
+        alerta.style.opacity = '0'
+        setTimeout(() => alerta.style.display = 'none', 1000)
+    }, 2000)
+}
+
 function apresentarTelaVitoria(corPeca) {
     let telaVitoria = document.querySelector('.tela-vitoria')
     let logVitoria = document.querySelector('.log-vencedor')
@@ -483,7 +516,8 @@ function apresentarTelaVitoria(corPeca) {
     telaVitoria.style.opacity = '1'
     telaVitoria.style.backgroundImage = `url(./assets/img/pecas-${corPeca}.jpg)`
 
-    logVitoria.innerText = `Parabéns Keila!` // Jogador referente
+    let vencedor = document.querySelector(`#jogador-${corPeca}`).innerText
+    logVitoria.innerText = `Parabéns ${vencedor}!` // Jogador Corrente
 
     document.querySelector('.bt-close').onclick = (event) => {
         telaVitoria.style.height = '0px'
@@ -518,7 +552,6 @@ function trocarPeca(destino) {
     let corPeca
     let gradient
 
-
     if (jogadorCorrente() == 'w') {
         corPeca = 'white'
         gradient = 'white, black, white'
@@ -539,7 +572,10 @@ function trocarPeca(destino) {
             document.querySelector(`#${destino}`).style.backgroundImage = peca.style.backgroundImage
             blocoTrocarPeca.style.height = '0'
             blocoTrocarPeca.style.padding = '0'
+            desbloquearEventos()
         }
+
+        bloquearEventos()
     })
 
 }
@@ -563,7 +599,7 @@ function efetuarJogadaUmMovimento(origem, destino, deslocamento, tipoPeca) {
                 }
                 incrementarContador()
             } else {
-                window.alert(`Jogada Inválida!
+                apresentarAlerta(`Jogada Inválida!
                             Está com dúvidas? Acesse ajuda ao lado`)
             }
         } else { //Se o peão não se moveu para cima, então ele tentou atacar alguma peça
@@ -576,7 +612,7 @@ function efetuarJogadaUmMovimento(origem, destino, deslocamento, tipoPeca) {
                 }
                 incrementarContador()
             } else {
-                window.alert(`Jogada Inválida!
+                apresentarAlerta(`Jogada Inválida!
                             Está com dúvidas? Acesse ajuda ao lado`)
             }
         }
@@ -591,12 +627,12 @@ function efetuarJogadaUmMovimento(origem, destino, deslocamento, tipoPeca) {
                 document.getElementById(origem).style.backgroundImage = 'unset' // Limpando posicao anterior
                 incrementarContador() // Jogada bem sucedida, incremento no contador
             } else {
-                window.alert(`Jogada Inválida!
-Está com dúvidas? Acesse ajuda ao lado`)
+                apresentarAlerta(`Jogada Inválida!
+                                  Está com dúvidas? Acesse ajuda ao lado`)
             }
         } else {
-            window.alert(`Jogada Inválida!
-Está com dúvidas? Acesse ajuda ao lado`)
+            apresentarAlerta(`Jogada Inválida!
+                                Está com dúvidas? Acesse ajuda ao lado`)
         }
     }
 
@@ -849,7 +885,7 @@ function realizarMovimento() {
                 })
 
                 if (posicaoValida == false) {
-                    window.alert(`Posição Inválida!
+                    apresentarAlerta(`Posição Inválida!
 Está com dúvidas? Acesse ajuda ao lado`)
                 }
 
@@ -858,16 +894,13 @@ Está com dúvidas? Acesse ajuda ao lado`)
         }
 
     } else {
-        window.alert(`Posição Inválida!
+        ApresentarAlerta(`Posição Inválida!
 Está com dúvidas? Acesse ajuda ao lado`)
     }
 
     // Ações ao fim de cada jogada, bem sucedida ou não
     document.getElementById(origem).style.opacity = '1'   // Tira marcação de seleção
+    document.getElementById('peca-selecionada').value = ''
+    document.getElementById('destino-selecionado').value = ''
 }
 
-
-
-
-// Linah 57
-// Restam cavalo, peao e rei a serem configurados o info
