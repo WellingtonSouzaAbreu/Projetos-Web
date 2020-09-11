@@ -146,7 +146,7 @@ function apresentarTelaAjuda() {
     }
 }
 
-function sobreXadrez(){
+function sobreXadrez() {
     window.open('https://pt.wikipedia.org/wiki/Xadrez')
 }
 
@@ -635,11 +635,11 @@ function efetuarJogadaUmMovimento(origem, destino, deslocamento, tipoPeca) {
                                 Está com dúvidas? Acesse ajuda ao lado`)
         }
     }
-
 }
 
 function incrementarContador() {
-    document.getElementById('contador-jogada').value = parseInt(document.getElementById('contador-jogada').value) + 1
+    contadorJogadas = document.getElementById('contador-jogada')
+    contadorJogadas.value = parseInt(contadorJogadas.value) + 1
 }
 
 function realizarMovimento() {
@@ -886,7 +886,7 @@ function realizarMovimento() {
 
                 if (posicaoValida == false) {
                     apresentarAlerta(`Posição Inválida!
-Está com dúvidas? Acesse ajuda ao lado`)
+                                        Está com dúvidas? Acesse ajuda ao lado`)
                 }
 
             } // Cavalo
@@ -895,12 +895,15 @@ Está com dúvidas? Acesse ajuda ao lado`)
 
     } else {
         ApresentarAlerta(`Posição Inválida!
-Está com dúvidas? Acesse ajuda ao lado`)
+                        Está com dúvidas? Acesse ajuda ao lado`)
     }
 
     // Ações ao fim de cada jogada, bem sucedida ou não
     document.getElementById(origem).style.opacity = '1'   // Tira marcação de seleção
     document.getElementById('peca-selecionada').value = ''
     document.getElementById('destino-selecionado').value = ''
+
+    socket.emit('atualizarJogo', document.querySelector('#tabuleiro').innerHTML, document.querySelector('#contador-jogada').value) //Atualizar jogo e contador
+
 }
 

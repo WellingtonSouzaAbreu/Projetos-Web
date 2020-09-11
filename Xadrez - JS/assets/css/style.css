@@ -73,7 +73,7 @@ body {
 
 .pagina {
     width: 1280px;
-    height: 700px;
+    height: 500px;
     display: flex;
     justify-content: space-around;
 }
@@ -358,6 +358,10 @@ body {
     width: 14%;
     cursor: pointer;
     border: none;
+}
+
+.send-msg i:hover{
+    color: #875d26;
 }
 
 .send-msg i {
