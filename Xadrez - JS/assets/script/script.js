@@ -513,12 +513,12 @@ function showVictoryScreen(pieceColor) {
 
     victoryScreen.style.height = '470px'
     victoryScreen.style.opacity = '1'
-    victoryScreen.style.backgroundImage = `url(./assets/img/pieces-${pieceColor}.jpg)`
+    victoryScreen.style.backgroundImage = `url(./assets/img/pecas-${pieceColor}.jpg)`
 
     let vencedor = document.querySelector(`#jogador-${pieceColor}`).innerText
     winningLog.innerText = `Parabéns ${vencedor}!` // Jogador Corrente
 
-    document.querySelector('#bt-close-victory-screen')[0].onclick = (event) => {
+    document.querySelector('#bt-close-victory-screen').onclick = (event) => {
         victoryScreen.style.height = '0px'
         victoryScreen.style.opacity = '0'
     }
