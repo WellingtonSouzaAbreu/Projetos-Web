@@ -2,6 +2,8 @@ function gameModeConfig(gameMode) {
     document.getElementById('txGameMode').value = gameMode
     let btSingle = document.getElementById('sp')
     let btMulti = document.getElementById('mp')
+    
+    let historico = document.getElementById('historico').innerText = ''
 
     let selecionado = {
         back: 'rgb(0, 153, 255)',
@@ -43,6 +45,7 @@ function resetarPosicoes() {
 }
 
 function clickStart() {
+	historico = []
     document.getElementById('btRestart').style.opacity = 1; //Apresenta botão de restart
     document.getElementById('container').style.opacity = 1; // Desbloqueia o click nas posições
 
@@ -84,6 +87,7 @@ function incrementarPlacar(vencedor) {
 }
 
 let jogadas = [] // Usar esse array como gabarito das jogadas
+let historico = []
 
 function jogada(clicado) {
     let gameMode = document.getElementById('txGameMode').value
@@ -108,6 +112,9 @@ function jogada(clicado) {
         let vencedor = checarVitoria(clicado) // Verifica se houve vitória
 
         if (vencedor != null) {  // Verifica se alguem venceu
+            vencedor = vencedor == 'X' ? document.getElementById("jogador1").innerHTML : document.getElementById("jogador2").innerHTML
+
+            historico.push({vencedor: vencedor, partida: historico.length + 1})
             incrementarPlacar(vencedor) // Incrementa e mostra o vencedor
         }
 
@@ -115,6 +122,7 @@ function jogada(clicado) {
             document.getElementById('log').style.opacity = 1
             document.getElementById('log').innerText = 'Deu Velha!'
             contJogada.value = 11
+            historico.push({vencedor: 'Deu Velha', partida: historico.length + 1})
         }
 
         contJogada.value = Number.parseInt(contJogada.value) + 1  // Contador de jogada
@@ -124,6 +132,17 @@ function jogada(clicado) {
         }
 
         vencedor = null
+        refreshHistoric()
+    }
+}
+
+function refreshHistoric(){
+    let historic = document.getElementById('historico')
+    historic.innerHTML = ''
+    if(historico.length > 0){
+        historico.map(data => {
+            historic.innerHTML += `<div style="margin: 3px;"><strong>Partida: ${data.partida}:</strong> ${data.vencedor}</div>`
+        })
     }
 }
 

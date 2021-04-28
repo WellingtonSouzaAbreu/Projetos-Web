@@ -12,62 +12,53 @@ app.set('views', path.join(__dirname))
 app.engine('html', ejs.renderFile)
 app.set('view engine', 'html')
 
-let jogadores = {
+let players = {
     player1: null,
     player2: null
 }
 
 io.on('connection', socket => {
 
-    console.log(`Socket conectado: ${socket.id}`)
+    console.log(`Socket connected: ${socket.id}`)
 
-    socket.on('setJogador', jogador => {
-        socket.id = jogador
-        console.log(`Socket conectado: ${socket.id}`)
+    socket.on('setPlayer', player => {
+        socket.id = player
+        console.log(`Socket connected: ${socket.id}`)
 
-        if (jogadores.player1 == null) {
-            jogadores.player1 = jogador
+        if (players.player1 == null) {
+            players.player1 = player
         } else {
-            if (jogadores.player2 == null) {
-                jogadores.player2 = jogador
+            if (players.player2 == null) {
+                players.player2 = player
             } else {
                 socket.disconnect()
             }
         }
-
-        socket.broadcast.emit('setJogadores', jogadores) // Configura nome dos jogadores
+        socket.broadcast.emit('setPlayers', players) // Configura nome dos players
     })
 
 
     socket.on('disconnect', () => {
-        console.log('user disconnected: ' + socket.id)
-        Object.values(jogadores).forEach((e, i) => {
+        console.log('User disconnected: ' + socket.id)
+        Object.values(players).forEach((e, i) => {
             if (e == socket.id)
-                delete jogadores[Object.keys(jogadores)[i]]
+                delete players[Object.keys(players)[i]]
         })
-        console.log('jogadores conectados: '+ jogadores)
+        console.log('players conectados: ' + players)
     })
 
-    socket.on('enviarMensagem', ObjMensagem => {
-        console.log(`${ObjMensagem.autor}: ${ObjMensagem.mensagem}`)
-        if(socket.id == jogadores.player1 || socket.id == jogadores.player2) // Bloqueia mensagens de outros players
-            socket.broadcast.emit('receberMensagem', ObjMensagem)
+    socket.on('sendMessage', message => {
+        console.log(`${message.autor}: ${message.message}`)
+        if (socket.id == players.player1 || socket.id == players.player2) // Bloqueia mensagens de outros players
+            socket.broadcast.emit('receiveMessage', message)
     })
 
-    socket.on('atualizarJogo', (jogoAtual,contadorJogadas) => {
-        socket.broadcast.emit('atualizar', jogoAtual, contadorJogadas)
+    socket.on('refreshGame', (currentGame, playCounter) => {
+        socket.broadcast.emit('refresh', currentGame, playCounter)
     })
 })
 
 
-
-
-
-
-
-
-
-
-server.listen(777, () => {
-    console.log('Server running in port 777...')
+server.listen(779, () => {
+    console.log('Server running in port 779...')
 })

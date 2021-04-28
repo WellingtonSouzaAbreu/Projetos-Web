@@ -13,7 +13,7 @@ body {
     position: absolute;
 }
 
-.tela-inicial{
+.initial-screen{
     width: 800px;
     height: 600px;
     position: absolute;
@@ -26,7 +26,7 @@ body {
     box-shadow: 2px 2px 5000px black  ;
 }
 
-.titulo-tela-inicial{
+.title-initial-screen{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,26 +36,26 @@ body {
     height: 20%;
 }
 
-.curiosidades-tela-inicial{
+.curiosities-initial-screen{
     font-size: 1.2em;
     text-shadow: 1px 1px 1px black;
     color: white;
     height: 60%;
 }
 
-.curiosidades-tela-inicial h3{
+.curiosities-initial-screen h3{
     margin: 10px 30px;
 }
 
-.curiosidades-tela-inicial p{
+.curiosities-initial-screen p{
     margin: 20px 60px;
 }
 
-.curiosidades-tela-inicial i{
+.curiosities-initial-screen i{
     color: black;
 }
 
-.rodape-tela-inicial{
+.initial-screen-footer{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,7 +63,7 @@ body {
     height: 20%;
 }
 
-.rodape-tela-inicial input{
+.initial-screen-footer input{
     padding: 20px 60px;
     background-color: black;
     color: white;
@@ -71,14 +71,14 @@ body {
     border-radius: 12px;
 }
 
-.pagina {
+.container {
     width: 1280px;
     height: 500px;
     display: flex;
     justify-content: space-around;
 }
 
-.lateral {
+.aside {
     width: 25%;
     height: 654px;
     background-image: url('../img/background-lateral.jpg');
@@ -88,12 +88,12 @@ body {
     box-shadow: 2px 2px 2px white;
 }
 
-.cabecalho {
+.header {
     width: 100%;
     height: 10%;
 }
 
-.ctimer {
+.timer-container {
     text-align: end;
 }
 
@@ -110,11 +110,8 @@ body {
     flex-direction: column;
 }
 
-.menu-titulo {
+.menu-title {
     height: 20%;
-}
-
-.menu-titulo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,7 +119,7 @@ body {
     text-shadow: 2px 1px 2px black;
 }
 
-.opcoes-menu {
+.menu-options {
     height: 80%;
     display: flex;
     flex-direction: column;
@@ -130,16 +127,16 @@ body {
     align-items: center;
 }
 
-.opcoes-menu .opcao-menu {
+.menu-options .menu-option {
     width: 100%;
 }
 
-.opcao-menu {
+.menu-option {
     display: flex;
     justify-content: center;
 }
 
-.opcoes-menu input {
+.menu-options input {
     padding: 10px;
     width: 62%;
     border-radius: 25px;
@@ -153,12 +150,12 @@ body {
     outline: none;
 }
 
-.opcoes-menu input:hover{
+.menu-options input:hover{
     background-color: black;
     color:white;
 }
 
-.tela-ajuda{
+.help-screen{
     width: 800px;
     height: 0px;
     position: absolute;
@@ -172,19 +169,19 @@ body {
     box-shadow: 2px 2px 5000px black  ;
 }
 
-.tela-ajuda__header{
+.help-screen-header{
     display: flex;
     justify-content: flex-end;
     margin: 0px;
 }
 
-.tela-ajuda__body{
+.help-screen-body{
     height: 96%;
     display: flex;
     justify-content: space-around;
 }
 
-.tela-ajuda__aside{
+.help-screen-aside{
     height: 100%;
     width: 30%;
     display: flex;
@@ -195,7 +192,7 @@ body {
     box-shadow: 1px 1px 1px black;
 }
 
-.tela-ajuda__aside ul{
+.help-screen-aside ul{
     font-size: 1.8em;
     list-style: none;
     overflow: hidden;
@@ -205,7 +202,7 @@ body {
     transition-duration: 0.5s;
 }
 
-.tela-ajuda__aside li{
+.help-screen-aside li{
     margin-left: 20px;
     font-size: 0.8em;
     padding: 5px;
@@ -214,12 +211,12 @@ body {
     box-sizing: border-box;
 }
 
-.tela-ajuda__aside li:hover{
+.help-screen-aside li:hover{
     background-color: rgb(184, 184, 184);
     border-left: 5px solid black;
 }
 
-.tela-ajuda__body-inner{
+.help-screen-body-inner{
     height: 100%;
     width: 70%;
     display: flex;
@@ -227,21 +224,21 @@ body {
     flex-direction: column;
 }
 
-.tela-ajuda__body-inner h3{
+.help-screen-body-inner h3{
     font-size: 30px;
     height: 5%;
     text-align: center;
     padding: 10px;
 }
 
-.tela-ajuda__body-conteudo{
+.help-screen-body-content{
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     height: 95%;
 }
 
-.tela-ajuda-info{
+.help-screen-info{
     height: 35%;
     font-size: 1.1em;
     overflow: auto;
@@ -268,29 +265,17 @@ body {
     background: #000; 
   }
 
-.tela-ajuda-info p{
+.help-screen-info p{
     margin: 10px 20px;
 }
 
-.tela-ajuda-image{
+.help-screen-image{
     overflow: hidden;
     height: 65%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-    
-
-
-
-
-
-
-
-
-
-
-
 
 .chat {
     height: 50%;
@@ -299,7 +284,7 @@ body {
     align-items: center;
 }
 
-.chat-inner {
+.chat-container {
     width: 85%;
     height: 85%;
     display: flex;
@@ -328,13 +313,13 @@ body {
     line-height: 16px;
 }
 
-.entrada-msg {
+.input-msg {
     height: 15%;
     display: flex;
     justify-content: space-around;
 }
 
-.entrada-texto {
+.input-text {
     height: 100%;
     width: 86%;
     display: flex;
@@ -344,7 +329,7 @@ body {
     background-color: white;
 }
 
-.entrada-texto input {
+.input-text input {
     height: 70%;
     width: 100%;
     border: none;
@@ -352,7 +337,7 @@ body {
     outline: 5px;
 }
 
-.send-msg {
+.bt-send-msg {
     background-color: white;
     height: 100%;
     width: 14%;
@@ -360,24 +345,24 @@ body {
     border: none;
 }
 
-.send-msg i:hover{
+.bt-send-msg i:hover{
     color: #875d26;
 }
 
-.send-msg i {
+.bt-send-msg i {
     color: black;
     font-size: 37px;
     text-justify: center;
 }
 
-.area-jogo {
+.game-area {
     width: 75%;
     height: 654px;
     display: flex;
     justify-content: space-between;
 }
 
-.cemiterio-white {
+.white-cemetery {
     width: 15%;
     background-color: #b9b9ad;
     display: flex;
@@ -385,7 +370,7 @@ body {
     border: 5px solid white;
 }
 
-.nome-jogador {
+.player-name {
     width: 100%;
     height: 8%;
     display: flex;
@@ -394,21 +379,21 @@ body {
     overflow: hidden;
 }
 
-.nome-jogador-w{
+.player-name-w{
     background-color: white;
     box-shadow: 1px 1px 4px black;
 
 
 }
-.nome-jogador-w h3{
+.player-name-w h3{
     color: black;
 }
 
-.colunas {
+.columns {
     display: flex;
 }
 
-.coluna-cemiterio {
+.cemetery-column {
     width: 48%;
     display: flex;
     align-items: center;
@@ -416,7 +401,7 @@ body {
     justify-content: space-between;
 }
 
-.cemiterio-posicao {
+.cemetery-position{
     height: 55px;
     width: 55px;
     margin: 6.75px;
@@ -425,7 +410,7 @@ body {
     background-size: 2.2em;
 }
 
-.ctabuleiro {
+.board-container {
     background-color:yellow;
     width: 650px;
     height: 650px;
@@ -436,13 +421,13 @@ body {
     box-shadow: 0.5px 0.5px 12px black;
 }
 
-.fileira-horizontal {
+.row {
     height: 81.25px;
     display: flex;
     justify-content: space-around;
 }
 
-.posicao {
+.position {
     width: 81.25px;
     height: 81.25px;
     background-repeat: no-repeat;
@@ -450,7 +435,7 @@ body {
     cursor: pointer;
 }
 
-.posicao:hover {
+.position:hover {
     opacity: 0.5;
 }
 
@@ -464,7 +449,7 @@ body {
     
 }
 
-.cemiterio-black {
+.black-cemetery {
     width: 15%;
     background-color: #b9b9ad;
     display: flex;
@@ -472,15 +457,15 @@ body {
     border: 5px solid white;
 }
 
-.nome-jogador-b{ 
+.player-name-b{ 
     background-color: black;
     box-shadow: 1px 1px 4px white;
 }
-.nome-jogador-b h3{
+.player-name-b h3{
     color: white;
 }
 
-.tela-vitoria{
+.victory-screen{
     position: absolute;
     height: 0px;
     width: 700px;
@@ -495,11 +480,11 @@ body {
     box-shadow: 22px 22px 22222px black;
 }
 
-.tela-vitoria__header{
+.victory-screen-header{
     text-align: right;
 }
 
-.bt-close{
+.bt-close-modal{
     padding: 3px;
     font-size: 25px;
     border: none;
@@ -507,12 +492,12 @@ body {
     cursor: pointer;
 }
 
-.tela-vitoria__header i{
+.victory-screen-header i{
     color: white;
     text-shadow: 1px 1px 1px black;
 }
 
-.tela-vitoria__body{
+.victory-screen-body{
     text-align: center;
     margin-top: 150px;
     font-size: 30px;
@@ -520,7 +505,7 @@ body {
     text-shadow: 2px 2px 22px black;
 }
 
-.tela-alerta{
+.alert-screen{
     position: absolute;
     font-size: 1.1em;
     width: 300px;
@@ -535,12 +520,11 @@ body {
     opacity: 0;
 }
 
-.mensagem-erro{
+.error-message{
     padding: 20px;
 }
 
-/* Trocar peça */
-.trocar-peca{
+.change-piece{
     position: absolute;
     background-image: linear-gradient( white, black, white);
     height: 0px;
@@ -549,18 +533,18 @@ body {
     overflow: hidden;
 }
 
-.trocar-peca__header{
+.change-piece-header{
     color: white;
     text-shadow: 1px 1px 2px black;
 }
 
-.trocar-peca__body{
+.change-piece-body{
     margin: 20px; 
     display:flex;
     justify-content: space-around;
 }
 
-.trocar-peca__body img{
+.change-piece-body img{
     padding: 40px;
     background-position: center;
     background-repeat: no-repeat;

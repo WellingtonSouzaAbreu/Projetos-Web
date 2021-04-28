@@ -82,7 +82,7 @@ h2{
 
 
 input#btStart{
-    margin-top: 60%;
+    margin-top: 30%;
     margin-left: 20%;
     padding: 30px 70px;
     font-size: 15pt;
@@ -91,7 +91,19 @@ input#btStart{
 input#btStart:hover{
     background-color: #ffffff;
 }
-
+div#historico{
+    background-color: ghostwhite;
+    width: 300px;
+    height: 80px;
+}
+div#btHistorico{
+    margin-left: 20px;
+    color: white;
+}
+div#btHistorico:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
 div#titulo{
     position: absolute;
     font-family: 'Times new Roman';
